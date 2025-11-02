@@ -1,0 +1,24 @@
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+
+
+:root{
+  --container: clamp(1100px, 95vw, 1440px);
+
+  
+  --bg:#fafafa; --paper:#fff; --text:#111827; --muted:#6b7280;
+  --brand:#0ea5e9;           
+  --accent:#16a34a;          
+  --border:#e5e7eb; --error:#ef4444;
+  --shadow:0 6px 24px rgba(0,0,0,.06);
+  --pill-bg:#f1f5f9;      
+}
+
+body{
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,'Helvetica Neue',Arial,'Noto Sans','Liberation Sans',sans-serif;
+  color:var(--text); background:var(--bg);
+}
+
+img{max-width:100%;display:block}
+button{font:inherit}
+a{color:inherit}

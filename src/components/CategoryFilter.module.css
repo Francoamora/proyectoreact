@@ -1,0 +1,21 @@
+.group{ display:flex; flex-wrap:wrap; gap:.5rem }
+
+.chip,.chipActive{
+  padding:.46rem .82rem;
+  border:1px solid var(--border);
+  border-radius:999px;
+  cursor:pointer;
+  background:var(--pill-bg);
+  transition:background .15s, border-color .15s, transform .05s, box-shadow .15s;
+}
+.chip:hover{ background:#eef2f5; border-color:#dbe3ea }
+.chip:focus-visible{ outline:2px solid var(--brand); outline-offset:2px }
+.chip:active{ transform:translateY(1px) }
+
+.chipActive{
+  background:#e6f4ff;
+  border-color:#b6e0fe;
+  box-shadow:0 0 0 2px rgba(14,165,233,.12) inset;
+}
+
+

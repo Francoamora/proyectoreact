@@ -1,0 +1,18 @@
+.empty{
+  display:grid;
+  place-items:center;
+  text-align:center;
+  padding:2rem;
+  color:var(--muted);
+}
+.empty h3{margin:.4rem 0 .2rem}
+.iconWrap{
+  width:42px;height:42px;
+  display:grid;place-items:center;
+  border-radius:.7rem;
+  border:1px solid var(--border);
+  background: var(--paper);
+  margin-bottom:.4rem;
+}
+.icon{width:20px;height:20px;color:var(--muted)}
+
