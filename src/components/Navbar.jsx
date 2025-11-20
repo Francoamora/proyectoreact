@@ -9,6 +9,8 @@ export default function Navbar({
   category,
   onCategoryChange,
   cartCount = 0,
+  onlyInStock = false,
+  onToggleInStock = () => {}
 }) {
   return (
     <header className={styles.header}>
@@ -42,16 +44,26 @@ export default function Navbar({
         </nav>
       </div>
 
-      <div className={styles.subnav} role="navigation" aria-label="Categorías">
-        <div className={styles.subnavInner}>
-          <div className={styles.catLabel}>Categorías</div>
-          <CategoryFilter
-            categories={categories}
-            value={category}
-            onChange={onCategoryChange}
-          />
+      {categories?.length > 0 && (
+        <div className={styles.subnav} role="navigation" aria-label="Categorías">
+          <div className={styles.subnavInner}>
+            <div className={styles.catLabel}>Categorías</div>
+            <CategoryFilter
+              categories={categories}
+              value={category}
+              onChange={onCategoryChange}
+            />
+            <div className={styles.spacer}></div>
+            <button
+              className={`${styles.stockToggle} ${onlyInStock ? styles.stockToggleActive : ''}`}
+              onClick={() => onToggleInStock(!onlyInStock)}
+              aria-pressed={onlyInStock}
+            >
+              Solo en stock
+            </button>
+          </div>
         </div>
-      </div>
+      )}
     </header>
   )
 }
