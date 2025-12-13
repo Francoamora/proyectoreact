@@ -1,6 +1,8 @@
-import { ShoppingCart, UserRound, Tags } from 'lucide-react'
+import { Link, useNavigate } from 'react-router-dom'
+import { ShoppingCart, UserRound, Tags, LogOut } from 'lucide-react'
 import CategoryFilter from './CategoryFilter.jsx'
 import styles from './Navbar.module.css'
+import { useAuth } from '../context/AuthContext.jsx'
 
 export default function Navbar({
   query,
@@ -12,13 +14,16 @@ export default function Navbar({
   onlyInStock = false,
   onToggleInStock = () => {}
 }) {
+  const { user, logout } = useAuth()
+  const nav = useNavigate()
+
   return (
     <header className={styles.header}>
       <div className={styles.top}>
-        <a className={styles.brand} href="/" aria-label="SuperCerca inicio">
+        <Link className={styles.brand} to="/" aria-label="SuperCerca inicio">
           <span className={styles.brandTitle}>SuperCerca</span>
           <span className={styles.brandSubtitle}>tu mercado amigo</span>
-        </a>
+        </Link>
 
         <form className={styles.search} role="search" onSubmit={(e) => e.preventDefault()}>
           <input
@@ -30,17 +35,31 @@ export default function Navbar({
         </form>
 
         <nav className={styles.menu} aria-label="Acciones">
-          <a href="#promos" className={styles.link}>
+          <Link to="/info" className={styles.link}>
             <Tags className={styles.icon} aria-hidden="true" />
             <span>Promociones</span>
-          </a>
-          <button className={styles.iconBtn} aria-label="Carrito">
+          </Link>
+
+          <Link to="/carrito" className={styles.iconBtn} aria-label="Carrito">
             <ShoppingCart className={styles.icon} />
             <span className={styles.badge} aria-live="polite">{cartCount}</span>
-          </button>
-          <button className={styles.iconBtn} aria-label="Cuenta">
-            <UserRound className={styles.icon} />
-          </button>
+          </Link>
+
+          {user ? (
+            <button
+              className={styles.link}
+              onClick={() => { logout(); nav('/', { replace:true }) }}
+              aria-label="Salir"
+            >
+              <LogOut className={styles.icon} />
+              <span>Salir</span>
+            </button>
+          ) : (
+            <Link to="/login" className={styles.link}>
+              <UserRound className={styles.icon} />
+              <span>Ingresar</span>
+            </Link>
+          )}
         </nav>
       </div>
 
