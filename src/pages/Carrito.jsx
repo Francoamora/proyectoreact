@@ -1,7 +1,9 @@
+import { Link } from 'react-router-dom'
 import Container from '../components/Container.jsx'
 import { useCart } from '../hooks/useCart.js'
 import { useProductsQuery } from '../hooks/useProductsQuery.js'
-import { Link } from 'react-router-dom'
+import { Trash2 } from 'lucide-react'
+import styles from './Carrito.module.css'
 
 export default function Carrito() {
   const { cart, removeItem } = useCart()
@@ -14,25 +16,37 @@ export default function Carrito() {
   const total = rows.reduce((s, r) => s + r.price * r.qty, 0)
 
   return (
-    <main style={{maxWidth:'var(--container)',margin:'0 auto',padding:'1rem'}}>
+    <main className={styles.page}>
       <Container title="Carrito">
         {rows.length === 0 ? (
           <p>Tu carrito está vacío. <Link to="/">Ver productos</Link></p>
         ) : (
           <>
-            <ul style={{listStyle:'none',padding:0,margin:0,display:'grid',gap:'.6rem'}}>
+            <ul className={styles.list}>
               {rows.map(item => (
-                <li key={item.id} style={{display:'grid',gridTemplateColumns:'1fr auto auto',gap:'.5rem',alignItems:'center',border:'1px solid var(--border)',borderRadius:'.7rem',padding:'.6rem .8rem',background:'var(--paper)'}}>
-                  <div>
-                    <div style={{fontWeight:700}}>{item.name}</div>
-                    <div style={{color:'var(--muted)'}}>x{item.qty} · ${item.price.toLocaleString('es-AR')}</div>
+                <li key={item.id} className={styles.item}>
+                  <div className={styles.itemInfo}>
+                    <div className={styles.itemName}>{item.name}</div>
+                    <div className={styles.itemDetails}>x{item.qty} · ${item.price.toLocaleString('es-AR')}</div>
                   </div>
-                  <div style={{fontWeight:700}}>${(item.price*item.qty).toLocaleString('es-AR')}</div>
-                  <button onClick={()=>removeItem(item.id)} style={{border:'1px solid var(--border)',background:'var(--paper)',borderRadius:'.5rem',padding:'.35rem .6rem',cursor:'pointer'}}>Quitar</button>
+                  <div className={styles.itemTotal}>${(item.price * item.qty).toLocaleString('es-AR')}</div>
+                  <button 
+                    onClick={() => removeItem(item.id)} 
+                    className={styles.removeBtn}
+                    aria-label={`Quitar ${item.name} del carrito`}
+                  >
+                    <Trash2 className={styles.removeIcon} />
+                    Quitar
+                  </button>
                 </li>
               ))}
             </ul>
-            <div style={{display:'flex',justifyContent:'flex-end',marginTop:'1rem',fontWeight:800}}>Total ${total.toLocaleString('es-AR')}</div>
+            <div className={styles.total}>
+              <strong>Total: ${total.toLocaleString('es-AR')}</strong>
+            </div>
+            <div className={styles.ctaContainer}>
+              <Link to="/checkout" className={styles.cta}>Ir a pagar</Link>
+            </div>
           </>
         )}
       </Container>
