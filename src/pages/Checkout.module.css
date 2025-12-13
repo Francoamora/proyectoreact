@@ -1,0 +1,26 @@
+.page{ padding:1.25rem 1rem }
+.list{
+  list-style:none; padding:0; margin:0; display:grid; gap:.6rem;
+}
+.item{
+  display:grid; grid-template-columns:1fr auto auto; gap:.6rem; align-items:center;
+  border:1px solid var(--border); border-radius:.7rem; padding:.6rem .8rem; background:var(--paper);
+}
+.name{ font-weight:700 }
+.qty{ color:var(--muted) }
+.price{ font-weight:700 }
+.total{
+  display:flex; justify-content:flex-end; margin-top:1rem; font-size:1.2rem; font-weight:800;
+}
+.actions{
+  display:flex; justify-content:space-between; margin-top:1rem; gap:.75rem; flex-wrap:wrap;
+}
+.primary{
+  background:linear-gradient(180deg,#22c55e,#16a34a);
+  color:#fff; border:none; padding:.7rem 1rem; border-radius:.7rem; font-weight:700; cursor:pointer;
+}
+.secondary{
+  display:inline-flex; align-items:center; gap:.45rem; text-decoration:none;
+  border:1px solid var(--border); background:var(--paper); color:var(--text);
+  border-radius:.7rem; padding:.6rem 1rem; font-weight:600;
+}

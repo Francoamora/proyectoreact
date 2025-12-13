@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import Container from '../components/Container.jsx'
 import { useCart } from '../hooks/useCart.js'
 import { useProductsQuery } from '../hooks/useProductsQuery.js'
-import { Trash2 } from 'lucide-react'
+import { Trash2, ArrowLeft } from 'lucide-react'
 import styles from './Carrito.module.css'
 
 export default function Carrito() {
@@ -30,8 +30,8 @@ export default function Carrito() {
                     <div className={styles.itemDetails}>x{item.qty} · ${item.price.toLocaleString('es-AR')}</div>
                   </div>
                   <div className={styles.itemTotal}>${(item.price * item.qty).toLocaleString('es-AR')}</div>
-                  <button 
-                    onClick={() => removeItem(item.id)} 
+                  <button
+                    onClick={() => removeItem(item.id)}
                     className={styles.removeBtn}
                     aria-label={`Quitar ${item.name} del carrito`}
                   >
@@ -41,10 +41,13 @@ export default function Carrito() {
                 </li>
               ))}
             </ul>
-            <div className={styles.total}>
-              <strong>Total: ${total.toLocaleString('es-AR')}</strong>
-            </div>
-            <div className={styles.ctaContainer}>
+
+            <div className={styles.total}><strong>Total: ${total.toLocaleString('es-AR')}</strong></div>
+
+            <div className={styles.actionsBar}>
+              <Link to="/" className={styles.backBtn}>
+                <ArrowLeft className={styles.backIcon} /> Atrás
+              </Link>
               <Link to="/checkout" className={styles.cta}>Ir a pagar</Link>
             </div>
           </>

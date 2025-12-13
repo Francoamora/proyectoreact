@@ -5,6 +5,7 @@ import NotFound from '../pages/NotFound.jsx'
 import Login from '../pages/Login.jsx'
 import Perfil from '../pages/Perfil.jsx'
 import Carrito from '../pages/Carrito.jsx'
+import Checkout from '../pages/Checkout.jsx'
 import ProtectedRoute from './ProtectedRoute.jsx'
 import PublicOnlyRoute from './PublicOnlyRoute.jsx'
 
@@ -21,10 +22,10 @@ export default function AppRouter() {
       <Route element={<ProtectedRoute />}>
         <Route path="/perfil" element={<Perfil />} />
         <Route path="/carrito" element={<Carrito />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Route>
 
       <Route path="*" element={<NotFound />} />
     </Routes>
   )
 }
-
